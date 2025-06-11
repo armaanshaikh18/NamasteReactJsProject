@@ -1,3 +1,52 @@
-#HeaderMain {
-  color: dodgerblue;
+.header-main{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid grey;
+}
+
+
+.logo{
+  width: 100px;
+}
+
+.nav-items > ul{
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-items>ul>li{
+   margin: 10px;
+  padding: 10px;
+}
+
+
+.res-container{
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.res-items{
+  width: 200px;
+  height: 300px;
+ padding: 5px;
+ margin: 10px;
+ background-color: #f0f0f0;
+  opacity: 0.8;
+
+}
+
+.res-items:hover{
+  cursor: pointer;
+  opacity:1;
+      transition: transform 0.3 ease;
+     transform: scale(1.03);
+}
+
+.search{
+  padding: 10px;
+}
+
+.foodLogo{
+  width: 100%;
 }
