@@ -1,3 +1,4 @@
+import React from "react";
 import logo from "../images/food_img.jpg";
 const Header = () => {
   return (

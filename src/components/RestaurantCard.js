@@ -1,3 +1,4 @@
+import React from "react";
 import foodLogo from "../images/biryani.jpg";
 
 const RestaurantCard = () => {
