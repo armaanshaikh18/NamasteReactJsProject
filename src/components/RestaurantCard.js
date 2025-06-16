@@ -1,13 +1,14 @@
 import React from "react";
+import { CDN_URL } from "../utils/contraints";
 import foodLogo from "../images/biryani.jpg";
 
-const RestaurantCard = () => {
+const RestaurantCard = ({ resData }) => {
   return (
     <div className="res-items">
-      <img className="foodLogo" src={foodLogo} alt="foods-items" />
-      <h3>Sahara Hotel</h3>
-      <h4>biryani,Indian,Rice</h4>
-      <h4>4.5 Stars</h4>
+      <img className="foodLogo" src={CDN_URL} alt="foods-items" />
+      <h3>{resData?.info?.name}</h3>
+      <h4 className="cuisine-item">{resData?.info?.cuisines.join(",")}</h4>
+      <h4>{resData?.info?.avgRating}</h4>
     </div>
   );
 };
