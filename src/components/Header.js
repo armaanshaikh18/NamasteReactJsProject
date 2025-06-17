@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import logo from "../images/food_img.jpg";
+import { Link } from "react-router";
+import About from "./About";
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
   return (
@@ -9,10 +11,18 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Orders</li>
+          <li>
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li>
+            <Link to={"/about"}>About Us</Link>
+          </li>
+          <li>
+            <Link to={"/contact"}>Contact Us</Link>
+          </li>
+          <li>
+            <Link to={"/orders"}>Orders</Link>
+          </li>
           <button
             onClick={() => {
               loginBtn === "Login"
