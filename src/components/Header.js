@@ -21,7 +21,7 @@ const Header = () => {
             <Link to={"/contact"}>Contact Us</Link>
           </li>
           <li>
-            <Link to={"/orders"}>Orders</Link>
+            <Link to={"/restaurant"}>Restaurants</Link>
           </li>
           <button
             onClick={() => {
