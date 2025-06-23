@@ -1,30 +1,15 @@
 import React, { useState } from "react";
-import { RES_MENU } from "../utils/contraints";
-import { useEffect } from "react";
 import { useParams } from "react-router";
+import useResMenuHook from "../utils/hooks/useResMenuHook";
 
 const RestaurantItem = () => {
-  const [resMenu, setResMenu] = useState(null);
-
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(RES_MENU + resId);
-
-    const json = await data.json();
-    console.log(json?.data);
-    setResMenu(json?.data);
-  };
+  const resMenu = useResMenuHook(resId);
 
   const resName =
     resMenu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
       ?.itemCards;
-
-  console.log(resName, "menu");
 
   return (
     <div className="main">

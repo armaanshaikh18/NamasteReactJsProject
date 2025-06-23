@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import restaurantList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
+import useOnlineStatusHook from "../utils/hooks/useOnlineHookStatus";
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [restaurantListItem, setRestaurantListItem] = useState([]);
@@ -26,6 +27,12 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const onlineStatus = useOnlineStatusHook();
+
+  if (onlineStatus === false) {
+    return <h1>Please Check your internet connection!</h1>;
+  }
 
   return restaurantListItem?.length === 0 ? (
     <Shimmer />
@@ -66,7 +73,7 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filterItem = restaurantListItem.filter((item) => {
-              return item?.info?.avgRating > 4.5;
+              return item?.info?.avgRating > 4;
             });
             setRestaurantListItem(filterItem);
           }}
@@ -77,7 +84,10 @@ const Body = () => {
       <div className="res-container">
         {restaurantSearchListItem?.map((item) => {
           return (
-            <Link key={item?.info?.id} to={`/restaurant/${item?.info?.id}`}>
+            <Link
+              key={item?.info?.parentId}
+              to={`/restaurant/${item?.info?.parentId}`}
+            >
               <RestaurantCard resData={item} />
             </Link>
           );
