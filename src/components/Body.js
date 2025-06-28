@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withRestaurantCardLabel } from "./RestaurantCard";
 import restaurantList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
@@ -19,6 +19,7 @@ const Body = () => {
     );
 
     const json = await data?.json();
+    console.log(json);
 
     setRestaurantListItem(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -27,6 +28,8 @@ const Body = () => {
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+
+  const LabelComponent = withRestaurantCardLabel(RestaurantCard);
 
   const onlineStatus = useOnlineStatusHook();
 
@@ -84,11 +87,12 @@ const Body = () => {
       <div className="res-container">
         {restaurantSearchListItem?.map((item) => {
           return (
-            <Link
-              key={item?.info?.parentId}
-              to={`/restaurant/${item?.info?.parentId}`}
-            >
-              <RestaurantCard resData={item} />
+            <Link key={item?.info?.id} to={`/restaurant/${item?.info?.id}`}>
+              {item?.info?.promoted ? (
+                <LabelComponent resData={item} />
+              ) : (
+                <RestaurantCard resData={item} />
+              )}
             </Link>
           );
         })}
