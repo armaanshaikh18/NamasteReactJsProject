@@ -13,7 +13,6 @@ const useResMenuHook = (resId) => {
     const jsonData = await data.json();
 
     setResMenu(jsonData.data);
-    console.log(jsonData.data);
   };
 
   return resMenu;
