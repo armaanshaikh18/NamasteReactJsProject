@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RestaurantCard, { withRestaurantCardLabel } from "./RestaurantCard";
 import restaurantList from "../utils/mockData";
 import Shimmer from "./Shimmer";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useOnlineStatusHook from "../utils/hooks/useOnlineHookStatus";
+import UserLogin from "../utils/UserLogin";
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [restaurantListItem, setRestaurantListItem] = useState([]);
@@ -31,6 +32,8 @@ const Body = () => {
   const LabelComponent = withRestaurantCardLabel(RestaurantCard);
 
   const onlineStatus = useOnlineStatusHook();
+
+  const { setShowContextData, userLogin } = useContext(UserLogin);
 
   if (onlineStatus === false) {
     return <h1>Please Check your internet connection!</h1>;
@@ -71,6 +74,15 @@ const Body = () => {
             Clear
           </button>
         </div>
+        <div className="loginInput">
+          <label htmlFor="label">Login User : </label>
+          <input
+            type="text"
+            value={userLogin}
+            onChange={(e) => setShowContextData(e.target.value)}
+          />
+        </div>
+
         <button
           className="filter-btn"
           onClick={() => {
@@ -86,13 +98,13 @@ const Body = () => {
       <div className="res-container">
         {restaurantSearchListItem?.map((item) => {
           return (
-            <Link key={item?.info?.id} to={`/restaurant/${item?.info?.id}`}>
+            <>
               {item?.info?.promoted ? (
                 <LabelComponent resData={item} />
               ) : (
                 <RestaurantCard resData={item} />
               )}
-            </Link>
+            </>
           );
         })}
       </div>

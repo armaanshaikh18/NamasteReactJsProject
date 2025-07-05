@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
+
 import useResMenuHook from "../utils/hooks/useResMenuHook";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantItem = () => {
+  const [toggle, setToggle] = useState(null);
+
   const { resId } = useParams();
 
   const resMenu = useResMenuHook(resId);
@@ -18,12 +22,20 @@ const RestaurantItem = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  console.log(categoryItems, "data main");
   return (
-    <div className="main">
+    <div className="mainItem">
       <h1>{resMenu?.cards[2]?.card?.card?.info?.name}</h1>
-      <p>{resMenu?.cards[2]?.card?.card?.info?.cuisines.join(", ")}</p>
-      <ul>
+      <span>{resMenu?.cards[2]?.card?.card?.info?.cuisines.join(", ")}</span>
+
+      {categoryItems?.map((category, index) => (
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          category={category?.card?.card}
+          showIndex={index === toggle ? true : false}
+          setToggleFunc={() => setToggle(index)}
+        />
+      ))}
+      {/* <ul>
         {resName?.map((item) => {
           return (
             <li key={item?.card?.info?.id}>
@@ -32,7 +44,7 @@ const RestaurantItem = () => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </div>
   );
 };

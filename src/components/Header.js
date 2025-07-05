@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../images/food_img.jpg";
 import { Link } from "react-router";
 import useOnlineStatusHook from "./../utils/hooks/useOnlineHookStatus";
 import About from "./About";
+import UserLogin from "../utils/UserLogin";
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
 
   const onlineStatus = useOnlineStatusHook();
+
+  const UserData = useContext(UserLogin);
+
+  console.log(UserData?.userLogin, "login");
 
   return (
     <div className="header-main">
@@ -28,6 +33,7 @@ const Header = () => {
           <li>
             <Link to={"/restaurant"}>Restaurants</Link>
           </li>
+          <li className="userText">Login User : {UserData?.userLogin}</li>
           <button
             onClick={() => {
               loginBtn === "Login"

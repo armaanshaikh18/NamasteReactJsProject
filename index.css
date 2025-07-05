@@ -61,6 +61,11 @@
   margin: 10px;
 }
 
+.loginInput {
+  margin-top: 10px;
+  padding: 5px;
+}
+
 .cuisine-item {
   overflow: hidden;
   white-space: nowrap;
@@ -81,4 +86,63 @@
 .user-card {
   padding: 10px;
   border: 1px solid dodgerblue;
+}
+
+.mainItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.categoryRes {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+.categoryTitle {
+  display: flex;
+  justify-content: space-between;
+}
+.categoryTitle > span {
+  font-size: 16px;
+  font-weight: bold;
+}
+.catBody {
+  display: flex;
+  border-bottom: 1px solid #929292;
+}
+.categoryName {
+  width: 90%;
+  padding: 10px;
+  margin: 10px;
+}
+
+.btnMain {
+  position: absolute;
+}
+
+.btnAdd {
+  padding: 5px;
+  background-color: black;
+  color: white;
+  margin: 0 20px;
+}
+
+.imgFood {
+  width: 100px;
+  height: 100px;
+}
+.foodCategory {
+  width: 10%;
+  margin: 5px;
+  padding: 5px;
+}
+
+.userText {
+  font-size: 14px;
+  font-weight: bold;
 }

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -6,6 +6,7 @@ import Body from "./components/Body";
 import RestaurantItem from "./components/RestaurantItem";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import UserLogin from "./utils/UserLogin";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import Shimmer from "./components/Shimmer";
 
@@ -22,11 +23,23 @@ import Shimmer from "./components/Shimmer";
 
 const About = lazy(() => import("./components/About"));
 const AppLayout = () => {
+  const [showContextData, setShowContextData] = useState();
+
+  useEffect(() => {
+    const dataItem = {
+      user: "Virat Kohli",
+    };
+    setShowContextData(dataItem?.user);
+  }, []);
   return (
-    <div className="app-container">
-      <Header />
-      <Outlet />
-    </div>
+    <UserLogin.Provider
+      value={{ userLogin: showContextData, setShowContextData }}
+    >
+      <div className="app-container">
+        <Header />
+        <Outlet />
+      </div>
+    </UserLogin.Provider>
   );
 };
 

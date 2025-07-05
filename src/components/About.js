@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import UserFunction from "./UserFunction";
 import UserClass from "./UserClass";
+import UserLogin from "../utils/UserLogin";
 
 class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userInfo: {
-        name: "Armaan",
+        name: "Armaan Class based component",
         name2: "Armaan Shaikh",
         location: "Mumbai",
         location2: "Navi Mumbai",
@@ -41,6 +42,12 @@ class About extends React.Component {
     return (
       <div>
         <h1>About Us</h1>
+        <span>
+          Login User :
+          <UserLogin.Consumer>
+            {({ userLogin }) => <h4>{userLogin}</h4>}
+          </UserLogin.Consumer>
+        </span>
         <UserClass
           name={this.state.userInfo.name}
           location={this.state.userInfo.location}

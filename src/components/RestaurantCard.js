@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CDN_URL } from "../utils/contraints";
+import UserLogin from "../utils/UserLogin";
 import foodLogo from "../images/biryani.jpg";
-9;
+import { useNavigate } from "react-router";
 const RestaurantCard = ({ resData }) => {
+  const UserLabel = useContext(UserLogin);
+  const navigate = useNavigate();
+
   return (
-    <div className="res-items">
-      <img
-        className="foodLogo"
-        src={CDN_URL + resData?.info?.cloudinaryImageId}
-        alt="foods-items"
-      />
+    <div
+      className="res-items"
+      onClick={() => navigate(`/restaurant/${resData?.info?.id}`)}
+    >
+      <img className="foodLogo" src={foodLogo} alt="foods-items" />
       <h3>{resData?.info?.name}</h3>
       <h4 className="cuisine-item">{resData?.info?.cuisines.join(",")}</h4>
       <h4>{resData?.info?.avgRating}</h4>
+      <h4>{UserLabel?.userLogin}</h4>
     </div>
   );
 };
