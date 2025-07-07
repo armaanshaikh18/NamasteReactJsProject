@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CDN_URL } from "../utils/contraints";
-import foodLogo from "../images/biryani.jpg";
+import ItemsList from "./ItemsList";
 
 const RestaurantCategory = ({ category, setToggleFunc, showIndex }) => {
   const handleToggle = () => {
@@ -18,32 +18,7 @@ const RestaurantCategory = ({ category, setToggleFunc, showIndex }) => {
 
       {showIndex && (
         <>
-          {category?.itemCards.map((item) => {
-            return (
-              <div key={item?.card?.info?.id} className="catBody">
-                <div className="categoryName">
-                  <span>{item?.card?.info?.name} </span>
-                  <span>
-                    - ₹
-                    {item.card.info.price
-                      ? item.card.info.price / 100
-                      : item.card.info.defaultPrice / 100}
-                  </span>
-                  <p>{item?.card?.info?.description}</p>
-                </div>
-                <div className="foodCategory">
-                  <div className="btnMain">
-                    <button className="btnAdd">Add +</button>
-                  </div>
-                  <img
-                    src={foodLogo}
-                    className="imgFood"
-                    //   src={CDN_URL + item?.card?.info?.cloudinaryImageId}
-                  />
-                </div>
-              </div>
-            );
-          })}
+          <ItemsList category={category} />
         </>
       )}
     </div>

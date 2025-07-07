@@ -8,7 +8,10 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import UserLogin from "./utils/UserLogin";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
+import { Provider } from "react-redux";
 import Shimmer from "./components/Shimmer";
+import store from "./store";
+import Cart from "./components/Cart";
 
 // const haeding = React.createElement("div", { id: "container" }, [
 //   React.createElement("div", { id: "child" }, [
@@ -32,14 +35,16 @@ const AppLayout = () => {
     setShowContextData(dataItem?.user);
   }, []);
   return (
-    <UserLogin.Provider
-      value={{ userLogin: showContextData, setShowContextData }}
-    >
-      <div className="app-container">
-        <Header />
-        <Outlet />
-      </div>
-    </UserLogin.Provider>
+    <Provider store={store}>
+      <UserLogin.Provider
+        value={{ userLogin: showContextData, setShowContextData }}
+      >
+        <div className="app-container">
+          <Header />
+          <Outlet />
+        </div>
+      </UserLogin.Provider>
+    </Provider>
   );
 };
 
@@ -58,6 +63,7 @@ const AppRouter = createBrowserRouter([
         ),
       },
       { path: "/contact", element: <Contact /> },
+      { path: "/cart", element: <Cart /> },
       { path: "/restaurant/:resId", element: <RestaurantItem /> },
     ],
     errorElement: <Error />,

@@ -1,17 +1,19 @@
 import React, { useContext, useState } from "react";
 import logo from "../images/food_img.jpg";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useOnlineStatusHook from "./../utils/hooks/useOnlineHookStatus";
 import About from "./About";
 import UserLogin from "../utils/UserLogin";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
 
   const onlineStatus = useOnlineStatusHook();
 
   const UserData = useContext(UserLogin);
+  const navigate = useNavigate();
 
-  console.log(UserData?.userLogin, "login");
+  const cartItem = useSelector((state) => state.cart.items);
 
   return (
     <div className="header-main">
@@ -30,8 +32,8 @@ const Header = () => {
           <li>
             <Link to={"/contact"}>Contact Us</Link>
           </li>
-          <li>
-            <Link to={"/restaurant"}>Restaurants</Link>
+          <li onClick={() => navigate("/cart")}>
+            Cart - ({cartItem.length}) items
           </li>
           <li className="userText">Login User : {UserData?.userLogin}</li>
           <button
