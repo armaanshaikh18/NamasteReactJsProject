@@ -9,6 +9,7 @@ const RestaurantCard = ({ resData }) => {
 
   return (
     <div
+      data-typeid="resData"
       className="res-items"
       onClick={() => navigate(`/restaurant/${resData?.info?.id}`)}
     >

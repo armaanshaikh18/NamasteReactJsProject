@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-// import logo from "../images/food_img.jpg";
+import logo from "../images/food_img.jpg";
 import { Link, useNavigate } from "react-router";
 import useOnlineStatusHook from "./../utils/hooks/useOnlineHookStatus";
 import About from "./About";
